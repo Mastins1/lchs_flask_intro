@@ -7,7 +7,7 @@ app.config['DEBUG'] = True
 
 @app.route('/hex_form')
 def hex_form():
-   hex = 'FF0000'
+   hex = '987654'
    feedback = "Display here..."
 
    return render_template('hex_form.html', hex=hex, feedback=feedback)
