@@ -6,8 +6,11 @@ app.config['DEBUG'] = True
 # Code the 'valid_hex_chars' function here:
 
 @app.route('/hex_form')
-def hex_form():    
-    return render_template('hex_form.html')
+def hex_form():
+   hex = 'FF0000'
+   feedback = "Display here..."
+
+   return render_template('hex_form.html', hex=hex, feedback=feedback)
 
 if __name__ == '__main__':
     app.run()

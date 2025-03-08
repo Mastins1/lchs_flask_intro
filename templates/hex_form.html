@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
         <title>Color Codes</title>
-        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
     </head>
     <body>
         <section class="centered">
@@ -18,13 +18,13 @@
                     <li>Each pair of characters controls the amount of red, green, or
                         blue in the color mix.</li>
                 </ul>
-                <p class="feedback">Feedback will appear here...</p>
+                <p class="feedback">{{feedback}}</p>
                 <hr>
-                <label>Enter a code: #<input type="text" name="hex" value="FF0000" required/></label><br>
-                <input type="color" value="#FF0000" disabled/><br>
+                <label>Enter a code: #<input type="text" name="hex" value="{{hex}}" required/></label><br>
+                <input type="color" value="#{{hex}}" disabled/>
                 <button>Check Hex Code</button>
                 <hr>
-                <img src="hex_figure.png" alt="Hex code for red." width="100%"/>
+                <img src="{{ url_for('static', filename='hex_figure.png') }}"wa alt="Hex code for red." width="100%"/>
             </form>
         </section>
     </body>
