@@ -5,10 +5,14 @@ app.config['DEBUG'] = True
 
 # Code the 'valid_hex_chars' function here:
 
-@app.route('/hex_form')
+@app.route('/hex_form', methods=["GET", "POST"])
 def hex_form():
-   hex = '987654'
-   feedback = "Display here..."
+   if request.method == 'POST':
+      hex = request.form['hex']
+      feedback = "Congratulations!"
+   else:
+      hex = '987654'
+      feedback = "Display here..."
 
    return render_template('hex_form.html', hex=hex, feedback=feedback)
 
