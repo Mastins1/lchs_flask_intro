@@ -3,26 +3,27 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
-# Code the 'valid_hex_chars' function here:
+def valid_hex_chars(hex):
+   for char in hex.upper():  
+      if char not in '0123456789ABCDEF':
+         return False  
+   return True
 
 @app.route('/hex_form', methods=["GET", "POST"])
 def hex_form():
    if request.method == 'POST':
-      hex = request.form['hex']
-      # Remove the '#' symbol if it exists
-      
+      hex = request.form['hex']      
       if hex and hex.startswith('#'):
             hex = hex[1:]       
       if len(hex) != 6:
          feedback = "Hex code must contain exactly 6 characters."
-         hex = '00FF00'
-      else:            
-         if all(c in '0123456789ABCDEF' for c in hex.upper()):
-               feedback = "Congratulations"              
-         else:
-               feedback = "Invalid hex color! Please use only digits (0-9) and letters (A-F)."
-               hex = 'FF0000' 
-
+         hex = '0000FF'
+      elif not valid_hex_chars(hex):
+            feedback = "Invalid hex color! Please use only digits (0-9) and letters (A-F)."
+            hex = '00FF00'
+      else:
+            feedback = "Invalid hex color! Please use only digits (0-9) and letters (A-F)."
+            hex = 'FF0000' 
    else:
       hex = '987654'
       feedback = "Display here..."
